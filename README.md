@@ -14,20 +14,23 @@ An educational 32-bit MIPS-style processor in Verilog for the DE1-SoC FPGA board
 
 Verilog, Intel Quartus Prime, ModelSim, and Cyclone V / DE1-SoC.
 
-## Project stages
+## Repository structure
 
-| Directory | Purpose |
-| --- | --- |
-| `lab6/` | Datapath integration with hardcoded control signals |
-| `lab7/` | Instruction decoder, integrated processor, and board demo |
+```text
+rtl/                   Integrated processor and board wrapper
+tests/                 Processor and control-unit testbenches
+fpga/                  Quartus project and device settings
+memory/                Memory initialization files
+examples/datapath/     Earlier datapath-only implementation
+```
 
-Each stage includes Verilog sources, Quartus project settings, testbenches, and a `blank.memh` input. Generated synthesis databases, simulator output, and duplicate source copies are excluded.
+The datapath example has its own `rtl`, `tests`, `fpga`, and `memory` directories. Build it separately because module names overlap with the integrated processor.
 
 ## Open and build
 
 1. Install Intel Quartus Prime with Cyclone V support. The checked-in project settings were created with Quartus Prime Lite 18.1.
-2. Open `lab7/LAB7_MIPS.qpf` for the control-unit stage, or `lab6/LAB6_MIPS.qpf` for the earlier datapath.
-3. Review source assignments and select the intended top-level entity. The checked-in `processor.qsf` selects `processor`; use `de1soc_demo` for the Lab 7 board interface and supply the appropriate board pin and timing constraints.
+2. Open `fpga/mips.qpf` for the integrated processor, or `examples/datapath/fpga/mips.qpf` for the datapath example.
+3. Review source assignments and select the intended top-level entity. The checked-in `processor.qsf` selects `processor`; use `de1soc_demo` for the board interface and supply the appropriate board pin and timing constraints.
 4. Review memory initialization parameters and set them to local program/data files. Some helper defaults reference paths from the original course environment.
 5. Compile the design and review synthesis and timing results before programming the board.
 
@@ -41,4 +44,4 @@ The implementation covers a subset of MIPS instructions. It is not a complete MI
 
 The sources were imported from the local working project. Synthesis, simulation, and board operation have not been rerun for this publication. Inspect the included testbenches and run them in your toolchain before relying on the design.
 
-Some modules were supplied with the coursework; retain their existing author and tool notices. The Lab 6 module breakdown is documented in [lab6/files/README.md](lab6/files/README.md).
+Some modules were supplied with the coursework; retain their existing author and tool notices. The earlier implementation is documented in [examples/datapath/README.md](examples/datapath/README.md).

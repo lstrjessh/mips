@@ -1,4 +1,4 @@
-# Lab 6: Single-Cycle Datapath
+# Single-Cycle Datapath Example
 
 ## Objectives
 - Implement key datapath elements (register file, PC, mux, sign-extender)
@@ -26,12 +26,14 @@
 | `serial_buffer.v` | Serial port buffer |
 
 ## Usage
-1. Open in Quartus II
+1. Open `fpga/mips.qpf` in Quartus
 2. Target device: Cyclone V 5CSEMA5F31C6
-3. Set `INIT_PROGRAM` to path of `blank.memh`
+3. Set `INIT_PROGRAM` to the path of `memory/blank.memh`
 4. Synthesize and check schematic
 
 ## Register File Requirements
 - Two read ports (asynchronous)
 - One write port (synchronous, positive edge)
 - Register $0 always returns 0
+
+Sources are in `rtl/`; testbenches are in `tests/`.
